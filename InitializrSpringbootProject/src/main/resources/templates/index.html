@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+
+    <body>
+        <header id="encabezado" title="Encabezado">
+                        <!--<h1 class="titulos" title="Título">HOLA </h1>-->
+
+            <h1 class="titulos" title="Título" th:text="${nombreControlador}">HOLA </h1>
+            <h2 title="Subtítulo"> subtítulo de la página - un eslogan</h2>
+        </header>
+
+        <nav class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav mx-auto seccion">
+                <a class="nav-link link" href="">Inicio</a> 
+                <a class="nav-link link" href="direccion/registro">Registra tu Direccion</a> 
+                <a class="nav-link link" href="usuario/registro">Registresé usted!!</a>
+            </div>
+        </nav>
+
+        <main>
+            <h3 class="titulos" title="Título">Nuestros Productos</h3>
+            <section id="principal">
+                <article>
+                    <h5 class="subtituloLimpieza" title="Subtítulo"> Limpieza </h5>
+                    <p title="Párrafo"> Un producoto </p>
+                    <p title="Párrafo"> Dos productos </p>
+                    <p title="Párrafo"> Tres productos una descripción 
+
+                        <br>
+                        del tercer producto tiene una 
+                        <br>
+                        característica y esta de acá
+                        <br>
+                        es otra característica
+                    </p>
+                </article>
+                <article>
+                    <h5 class="subtituloLimpieza" title="Subtítulo"> Limpieza </h5>
+                    <p title="Párrafo"> Un producto </p>
+                    <p title="Párrafo"> Dos productos </p>
+                    <p title="Párrafo"> Tres productos una descripción del tercer producto
+                        tiene una característica
+                        y esta de acá es otra característica </p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <address>&copy; 2013-Todos los derechos reservados - info@misitio.com - tel: 011-4321-1234</address>
+        </footer>
+    </body>
+
+</html>
