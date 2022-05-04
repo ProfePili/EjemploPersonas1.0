@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service // PROCESAR INFORMACIÓN - VALIDARLA Y PASARLA AL REPOSITORIO
 public class DireccionServicio {
 
-    @Autowired
+    @Autowired // INSTANCIAR OBJETOS
     private DireccionRepositorio direccionRepositorio;
 
     @Transactional(propagation = Propagation.NESTED)
-    public void guardar(Provincia provincia, String calle, Integer numeracion, Boolean esDepartamento, Boolean estaActivo) throws Exception {
+    public void guardar(Provincia provincia, String calle, Integer numeracion, Boolean esDepartamento) throws Exception {
 
         // VALIDACIONES
-        validar(provincia, calle, numeracion, esDepartamento, estaActivo);
+        validar(provincia, calle, numeracion, esDepartamento);
         
         // SETEO DE ATRIBUTOS
         Direccion direccion = new Direccion();
@@ -30,7 +30,7 @@ public class DireccionServicio {
         direccion.setCalle(calle);
         direccion.setNumeracion(numeracion);
         direccion.setEsDepartamento(esDepartamento);
-        direccion.setEstaActivo(estaActivo);
+        direccion.setEstaActivo(true);
 
         // ---------- OTRA FORMA DE SETEAR LOS ATRIBUTOS -------- //
         // Direccion direccion2 = new Direccion(provincia, calle, numeracion, esDepartamento, estaActivo);
@@ -39,12 +39,12 @@ public class DireccionServicio {
         direccionRepositorio.save(direccion);
     }
 
-    public void validar(Provincia provincia, String calle, Integer numeracion, Boolean esDepartamento, Boolean estaActivo) throws Exception {
+    public void validar(Provincia provincia, String calle, Integer numeracion, Boolean esDepartamento) throws Exception {
         //VALIDACIONES   
         if (provincia == null || provincia.toString().trim().isEmpty()) {
             throw new ExcepcionPropia("LA PROVINCIA NO PUEDE SER NULA");
         }
-
+        
         if (calle == null || calle.trim().isEmpty()) {
             throw new ExcepcionPropia("CALLE NO VÁLIDA");
         }
@@ -55,10 +55,6 @@ public class DireccionServicio {
 
         if (esDepartamento == null || esDepartamento.toString().isEmpty()) {
             throw new ExcepcionPropia("DEBE DECIR SI ES O NO UN DPTO");
-        }
-
-        if (estaActivo == null || estaActivo.toString().isEmpty()) {
-            throw new ExcepcionPropia("INDIQUE SI ESTA ACTIVO");
         }
     }
 

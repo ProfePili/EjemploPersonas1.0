@@ -1,6 +1,7 @@
 package com.example.demo.controladores;
 
 import com.example.demo.entidades.Direccion;
+import com.example.demo.repositorios.DireccionRepositorio;
 import com.example.demo.servicios.DireccionServicio;
 import com.example.demo.servicios.UsuarioServicio;
 import java.util.Date;
@@ -18,15 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsuarioControlador {
 
     @Autowired
-    private UsuarioServicio personaServicio;
+    private UsuarioServicio usuarioServicio;
 
     @Autowired
-    private DireccionServicio direccionService;
-    
+    private DireccionServicio direccionServicio;
+
     @GetMapping("/registro")
-    public String formulario(ModelMap modelo){
-        List<Direccion> direcc = direccionService.mostrarTodos();
-        modelo.addAttribute("direccion", direcc);
+    public String formulario(ModelMap modelo) {
+        modelo.addAttribute("valueEmail", "alguien@ejemplo.com");
+        modelo.addAttribute("direccion", direccionServicio.mostrarTodos());
         return "usuario_registro";
     }
 
@@ -34,18 +35,53 @@ public class UsuarioControlador {
     // utilizando el RequestParam los vamos a extraer.
     // si no se puede realizar la instruccion (persistir un regustro)
     // debemos manejar esa excepción para que no se caiga la página
-    @PostMapping("/registro") 
-    public String guardar(ModelMap modelo, @RequestParam String email, @RequestParam String nombre, @RequestParam String apellido, @RequestParam Date fechaNacimiento, @RequestParam(required = false) Direccion direccion) {
+    @PostMapping("/registro")
+    public String guardar(ModelMap modelo, @RequestParam String email,
+            @RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam Date fechaNacimiento, @RequestParam Direccion direccion) {
+
         try {
-            personaServicio.guardar(email, nombre, apellido, fechaNacimiento, direccion, Boolean.TRUE);
+            usuarioServicio.guardar(email, nombre, apellido, fechaNacimiento, direccion);
             modelo.put("exito", "Persona guardada con éxito");
         } catch (Exception e) {
             modelo.put("error", "Error al registrarse");
         }
+
         return "usuario_registro";
+
     }
     
+    @PostMapping("/modificar")
+    public String modificar(ModelMap modelo, @RequestParam String id, @RequestParam  String email, @RequestParam String nombre,
+            @RequestParam String apellido, @RequestParam Date fechaNacimiento, @RequestParam String idDireccion) throws Exception {
+        try {
+            usuarioServicio.modificar(id, email, nombre, apellido, fechaNacimiento, idDireccion);
+            modelo.put("exito", "Persona modificada con éxito");
+        } catch (Exception e) {
+            modelo.put("error", "Error al registrarse");
+        }
+        
+        return "modificar";
+    }
+
+    @GetMapping("/modificar")
+    public String formularioModificar(ModelMap modelo) {
+        modelo.addAttribute("usuarios", usuarioServicio.mostrarTodos());
+        modelo.addAttribute("direcciones", direccionServicio.mostrarTodos());
+        return "modificar";
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

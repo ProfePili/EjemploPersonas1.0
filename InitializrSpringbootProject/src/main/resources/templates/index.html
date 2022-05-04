@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="/style.css">
     </head>
@@ -13,15 +13,18 @@
         <header id="encabezado" title="Encabezado">
                         <!--<h1 class="titulos" title="Título">HOLA </h1>-->
 
-            <h1 class="titulos" title="Título" th:text="${nombreControlador}">HOLA </h1>
+            <h1 class="titulos" title="Título" th:text="${titulo}">HOLA </h1>
             <h2 title="Subtítulo"> subtítulo de la página - un eslogan</h2>
         </header>
 
         <nav class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav mx-auto seccion">
-                <a class="nav-link link" href="">Inicio</a> 
-                <a class="nav-link link" href="direccion/registro">Registra tu Direccion</a> 
-                <a class="nav-link link" href="usuario/registro">Registresé usted!!</a>
+                <td>
+                    <tr> <a class="nav-link link" href="">Inicio</a> </tr>
+                    <tr> <a class="nav-link link" href="direccion/registro">Registra tu Direccion</a> </tr>
+                    <tr> <a class="nav-link link" href="usuario/registro">¡¡Registresé usted!!</a> </tr>
+                    <tr> <a class="nav-link link" href="usuario/modificar"> Modifique un usuario</a> </tr>
+                </td>
             </div>
         </nav>
 

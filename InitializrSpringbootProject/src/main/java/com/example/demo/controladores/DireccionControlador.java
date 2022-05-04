@@ -25,10 +25,12 @@ public class DireccionControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(ModelMap modelo, @RequestParam Provincia provincia, @RequestParam String calle, @RequestParam Integer numeracion, @RequestParam Boolean esDepartamento) throws Exception {
+    public String registro(ModelMap modelo, @RequestParam Provincia provincia, 
+            @RequestParam String calle, @RequestParam Integer numeracion, 
+            @RequestParam Boolean esDepartamento) throws Exception {
         try {
-            direccionServicio.guardar(provincia, calle, numeracion, esDepartamento, true);
-            modelo.put("exito", "Registro exitoso: ¡USTED SE HA REGISTRADOOOOO!");
+            direccionServicio.guardar(provincia, calle, numeracion, esDepartamento);
+            modelo.addAttribute("exito", "Registro exitoso: ¡USTED SE HA REGISTRADOOOOO!");
             return "direccion_registro";
         } catch (Exception e) {
             e.printStackTrace();            

@@ -19,25 +19,25 @@
         </header>
 
         <main>
-            <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+            <div th:if="${exito}!=null" class=" card text-white bg-success mb-3" >
                 <div class="card-body">
                     <h5 class="card-title">Exito</h5>
                     <p class="card-text" th:text="${exito}"></p>
                 </div>
             </div>
+            
             <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
                 <div class="card-body">
                     <h5 class="card-title">Error</h5>
                     <p class="card-text" th:text="${error}"></p>
-            </div>
-
+                </div>
             </div>
             
             <form action="/direccion/registro" method="POST" enctype="multipart/form-data">
                 
                 <label>Provincia</label>
                 <select class="form-control" name="provincia"> 
-                    <option th:each="prov : ${provincias}" th:text="${prov.getNombre()}"></option> 
+                    <option th:each="prov : ${provincias}" th:text="${prov}"></option> 
                 </select>
                 
                 <label>Calle</label>

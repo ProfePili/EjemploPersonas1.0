@@ -1,5 +1,3 @@
-
-
 package com.example.demo.repositorios;
 
 import com.example.demo.entidades.Usuario;
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepositorio extends JpaRepository<Usuario,String>{
     
     @Query("SELECT u FROM Usuario u WHERE u.email = :email")
-    public Usuario encontrarPorEmail(@Param("email") String email);
+    public Usuario encontrarPorEmail(@Param("email") String ARGUMENTO);
     
     @Query("SELECT u FROM Usuario u WHERE u.direccion.provincia = :provincia ")
     public List<Usuario> buscarPorProvincia(@Param("provincia") Provincia provincia);

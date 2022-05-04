@@ -41,14 +41,16 @@
                 <input type="text" class="form-control" name="apellido" />
 
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" />
+                <input type="email" class="form-control" name="email" th:field="*{valueEmail}" />
 
                 <label>Fecha de Nacimiento</label>
-                <input type="text" class="form-control" name="fechaNacimiento" placeholder="aaaa/mm/dd"/>
+                <input type="text" class="form-control" 
+                       name="fechaNacimiento" 
+                       placeholder="aaaa/mm/dd"/>
 
                 <label>Direccion</label>
                 <select class="form-control" name="direccion"> 
-                    <option th:each="direc : ${direccion}" th:text="${direc}" th:value="${direc.id}"></option> 
+                    <option th:each="direc : ${direccion}" th:text="${direc.getCalle()}"></option> 
                 </select>
                 <br>
                     <button type="submit" class="btn btn-primary">Registrarme</button>

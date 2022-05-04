@@ -24,11 +24,12 @@ public class Usuario {
     private String id; // id autogenerado de tipo string
 
     @Column(unique = true) // es opcional, indica que los valores de esta columna son unicos.
-    private String email;
+    private String email; // NO SE PUEDE REPETIR EL VALOR
 
-    @Column(nullable = true) // no se permiten valores nulos
+    @Column(nullable = false) // no se permiten valores nulos
     private String nombre;
 
+    @Column(name = "APELLIDOS")
     private String apellido;
 
     @Temporal(TemporalType.DATE) // si o si al manejar fechas debemos especificar el tipo
